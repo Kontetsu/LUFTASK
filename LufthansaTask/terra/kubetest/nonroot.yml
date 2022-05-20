@@ -1,0 +1,18 @@
+- hosts: all
+  become: yes
+  tasks:
+    - name: creating 'llaqi' user
+      user: name=llaqi append=yes state=present createhome=yes shell=/bin/bash
+
+    - name:  for passwordless sudo
+      lineinfile:
+        dest: /etc/sudoers
+        line: 'llaqi ALL=(ALL) NOPASSWD: ALL'
+        validate: 'visudo -cf %s'
+
+    - name: authorized keys for the ubuntu user
+      authorized_key: user=llaqi key="{{item}}"
+      with_file:
+        - /etc/ssh/ssh_host_rsa_key.pub
+
+

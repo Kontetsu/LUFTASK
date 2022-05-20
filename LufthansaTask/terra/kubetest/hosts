@@ -1,0 +1,9 @@
+[masters]
+master ansible_host=10.0.1.51 ansible_user=ubuntu	ansible_ssh_private_key_file=/home/ubuntu/ansible/test.pem
+
+[workers]
+worker1 ansible_host=10.0.1.52 ansible_user=ubuntu	ansible_ssh_private_key_file=/home/ubuntu/ansible/test.pem
+worker2 ansible_host=10.0.1.53 ansible_user=ubuntu	ansible_ssh_private_key_file=/home/ubuntu/ansible/test.pem
+
+[all:vars]
+ansible_python_interpreter=/usr/bin/python2.7
